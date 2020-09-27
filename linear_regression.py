@@ -4,10 +4,8 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 dataset = pd.read_csv('housing.csv')
-print(dataset.columns)
 
 x_matrix = dataset['total_rooms']
-#x_matrix /= np.max(x_matrix)
 y_matrix = dataset['median_house_value']
 
 x_matrix = np.hstack((np.ones_like(x_matrix), x_matrix))
@@ -22,13 +20,11 @@ test_y = np.array(y_matrix[order[:portion]])
 train_x = np.array(x_matrix[order[portion:]])
 train_y = np.array(y_matrix[order[portion:]])
 
-#Numpy implementation
 def get_gradient(w, x, y):
     y_estimate = x.dot(w).flatten()
     error = (y.flatten() - y_estimate)
     gradient = -(1.0/len(x)) * error.dot(x)
     return y_estimate, gradient, np.power(error, 2)
-
 
 w = np.random.randn(2)
 alpha = 0.5 
@@ -73,14 +69,5 @@ ax2.plot(pred, color='g')
 ax2.plot(test_y, color='r')
 ax2.set_xlabel  = 'Total bedrooms'
 plt.show()
-
-
-
-
-
-
-
-
-
 
 
